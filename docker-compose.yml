@@ -1,0 +1,37 @@
+version: "3"
+networks:
+  micro-net:
+    driver: bridge
+volumes:
+  api-gateway-node-modules:
+  flights-service-node-modules:
+  booking-service-node-modules:
+services:
+  api_gateway:
+    build: ./api-gateway
+    networks:
+      - micro-net
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./api-gateway:/OneDrive/Documents/nodejs/api-gateway
+      - api-gateway-node-modules:/OneDrive/Documents/nodejs/api-gateway/node_modules
+  flights_service:
+    build: ./flights
+    networks:
+      - micro-net
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./flights:/OneDrive/Documents/nodejs/flights_service
+      - flights-service-node-modules:/OneDrive/Documents/nodejs/flights-service/node_modules
+  booking_service:
+    build: ./bookings
+    networks:
+      - micro-net
+    ports:
+      - "3002:3002"
+    volumes:
+      - ./bookings:/OneDrive/Documents/nodejs/booking_service
+      - booking-service-node-modules:/OneDrive/Documents/nodejs/booking-service/node_modules
+    
